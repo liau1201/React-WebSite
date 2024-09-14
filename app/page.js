@@ -20,15 +20,15 @@ export default function Home() {
   // useEffect(資料若變動時要執行的函式 , [要綁定的資料])
   useEffect(() => {
     // 綁定的資料若為空，此處的流程只會在第一次渲染時執行
-    console.log("副作用被觸發");
+    // console.log("副作用被觸發");
     axios
       .get("/api/vocab-ai")
       .then(res => {
-        console.log("後端回應的資料", res.data);
+        // console.log("後端回應的資料", res.data);
         setVocabList(res.data);
       })
       .catch(err => {
-        console.log("err:", err);
+        // console.log("err:", err);
         alert("發生錯誤，請稍候再試");
       });
   }, []);
@@ -45,13 +45,13 @@ export default function Home() {
     axios
       .post("/api/vocab-ai", body)
       .then(res => {
-        console.log("後端回應的資料:", res.data);
+        // console.log("後端回應的資料:", res.data);
         // 將最新的生成結果擺在清單最前面並保留過去的生成結果
         setVocabList([res.data, ...vocabList]);
         setIsWaiting(false);
       })
       .catch(err => {
-        console.log("錯誤", err);
+        // console.log("錯誤", err);
         setIsWaiting(false);
         alert("發生錯誤，請稍候再試");
       });
